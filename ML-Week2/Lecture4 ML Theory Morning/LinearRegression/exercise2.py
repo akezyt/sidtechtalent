@@ -36,22 +36,27 @@ y_test_pred
 reg_param = 1.0
 
 ridge = Ridge(alpha=reg_param)
+lasso = Lasso(alpha=reg_param)
 
 # fit the model
 ridge.fit(x_std, y_train)
+lasso.fit(x_std, y_train)
 
-y_train_pred = ridge.predict(sc_x.fit_transform(X_train))
+ridge_y_train_pred = ridge.predict(sc_x.fit_transform(X_train))
+lasso_y_train_pred = lasso.predict(sc_x.fit_transform(X_train))
 
 print("ridge coef: "+ str(ridge.coef_))
 
-# features to be predicted
-X_fit = np.arange(X.min(), X.max(), 1)[:, np.newaxis]
-
-y_test_pred = ridge.predict(sc_x.fit_transform(X_test))
+ridge_y_test_pred = ridge.predict(sc_x.fit_transform(X_test))
+lasso_y_test_pred = lasso.predict(sc_x.fit_transform(X_test))
 
 
 from sklearn.metrics import mean_squared_error
 
 print('MSE train: %.3f, test: %.3f' % (
-        mean_squared_error(y_train, y_train_pred),
-        mean_squared_error(y_test, y_test_pred)))
+        mean_squared_error(y_train, ridge_y_train_pred),
+        mean_squared_error(y_test, ridge_y_test_pred)))
+
+print('MSE train: %.3f, test: %.3f' % (
+        mean_squared_error(y_train, lasso_y_train_pred),
+        mean_squared_error(y_test, lasso_y_test_pred)))
