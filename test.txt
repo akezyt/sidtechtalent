@@ -1,0 +1,8 @@
+lecture0 TechTalent Pretest
+lecture1 basic python
+lecture2 python data science stack
+Lecture3
+Lecture3 intro to machine learning
+ML-AI cheatsheets
+ML-Week2
+test.txt
